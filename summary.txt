@@ -27,19 +27,14 @@ mongoose.connect('mongodb://localhost:27017/testdb')
 Library: pg or sequelize
 * npm install pg
 *==>
-const { Client } = require('pg');
+const { Pool } = require("pg");
+require("dotenv").config();
 
-const client = new Client({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'testdb',
-  password: 'yourpassword',
-  port: 5432,
+const pool = new Pool({
+  connectionString: 'postgresql://postgres:admin@localhost:5432/DB_NAME',
 });
 
-client.connect()
-  .then(() => console.log('PostgreSQL connected'))
-  .catch(err => console.error(err));
+module.exports = pool;
 
 🐬 MySQL
 Library: mysql2 or sequelize
